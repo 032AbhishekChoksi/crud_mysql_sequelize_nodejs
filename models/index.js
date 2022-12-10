@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 
 const sequelize = new Sequelize('all-india', 'root', '', {
     host: 'localhost',
@@ -11,3 +11,11 @@ sequelize.authenticate().then(() => {
 }).catch(err => {
     console.log("Error: " + err);
 });
+
+const db = {};
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+
+db.users = require('./users')(sequelize, DataTypes);
+
+db.sequelize.sync({ force: true, match: /all-india$/ }).then(() => { console.log("yes re-sync"); });
