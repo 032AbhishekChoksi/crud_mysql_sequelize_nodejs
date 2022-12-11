@@ -13,7 +13,9 @@ module.exports = (sequelize, DataTypes) => {
         // createdAt: false,
         // updatedAt: false,
         // engine: 'MYISAM',
+        // tableName: 'userdata',
         createdAt: 'create_at',
         updatedAt: 'modified_at',
     });
+    return Users;
 };
